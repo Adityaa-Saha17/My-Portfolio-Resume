@@ -302,17 +302,31 @@
 
   /* Responsive */
   @media (max-width: 880px) {
-    section.hero { grid-template-columns: 1fr; gap: 28px; }
-    .avatar-ring { width: 240px; height: 240px; }
-    .about-grid-new { grid-template-columns: 1fr; gap: 28px; }
-    .skill-grid { grid-template-columns: 1fr; }
+    section.hero { grid-template-columns: 1fr; gap: 28px; padding: 56px 0 64px; }
+    .cat-stage { max-width: 320px; margin: 0 auto; }
+    .avatar-ring { width: 240px; height: 240px; justify-self: center; }
+    .about-grid-new { grid-template-columns: 1fr; gap: 36px; }
+    .about-photo { display: flex; justify-content: center; }
+    .skill-grid { grid-template-columns: 1fr 1fr; }
     nav.top ul { gap: 18px; }
     .shell { padding: 0 20px; }
+    .sect { padding: 56px 0; }
+    footer { flex-direction: column; gap: 12px; align-items: flex-start; padding: 28px 0 48px; margin-top: 48px; }
+    .project-top { flex-wrap: wrap; gap: 8px; }
   }
   @media (max-width: 520px) {
     nav.top ul { display: none; }
-    .hero h1 { font-size: 36px; }
+    .hero h1 { font-size: 32px; }
+    .hero .bio { font-size: 15px; }
     .avatar-ring { width: 180px; height: 180px; }
+    .cat-stage { display: none; }
+    .about-card { padding: 20px; }
+    .skill-grid { grid-template-columns: 1fr; }
+    .project { padding: 20px 18px; }
+    .project h3 { font-size: 18px; }
+    .project .blurb { font-size: 14px; }
+    .hero-links { gap: 4px 14px; }
+    footer .right { gap: 16px; }
   }
 
   /* Theme toggle */
@@ -326,10 +340,12 @@
   }
   .theme-toggle:hover { color: var(--accent); border-color: var(--border-strong); }
   .theme-toggle svg { width: 15px; height: 15px; }
-  [data-theme="light"] .theme-toggle .icon-sun { display: none; }
+  /* dark mode: show sun icon (click → go light) */
+  .theme-toggle .icon-sun { display: block; }
   .theme-toggle .icon-moon { display: none; }
+  /* light mode: show moon icon (click → go dark) */
+  [data-theme="light"] .theme-toggle .icon-sun { display: none; }
   [data-theme="light"] .theme-toggle .icon-moon { display: block; }
-  :not([data-theme="light"]) .theme-toggle .icon-sun { display: block; }
 </style>
 </head>
 <body>
@@ -370,7 +386,7 @@
           <span class="sep">·</span>
           <a href="https://www.linkedin.com/in/adityaa-saha-533b02299/" target="_blank" rel="noopener">linkedin</a>
           <span class="sep">·</span>
-          <a href="/cdn-cgi/l/email-protection#71434212024140414143311818051313025f10125f181f">email</a>
+          <a href="https://mail.google.com/mail/?view=cm&to=23cs01002@iitbbs.ac.in" target="_blank" rel="noopener">email</a>
         </div>
       </div>
 
@@ -434,7 +450,7 @@
         </div>
         <div class="about-photo">
           <div class="avatar-ring">
-            <img class="avatar" src="adityaa.jpeg" alt="Adityaa Saha" />
+            <img class="avatar" src="adityaa.jpg" alt="Adityaa Saha" />
           </div>
         </div>
       </div>
@@ -530,7 +546,6 @@
             <span class="t">OS</span>
             <span class="t">COA</span>
             <span class="t">DBMS</span>
-            <span class="t">CN</span>
           </div>
         </div>
       </div>
@@ -540,12 +555,12 @@
       <span>© 2026 Adityaa Saha · built byte-by-byte</span>
       <div class="right">
         <a href="#home">↑ back to top</a>
-        <!-- <span>v1.0.0</span> -->
+        <span>v1.0.0</span>
       </div>
     </footer>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     // scroll-spy
     const links = document.querySelectorAll('nav.top ul a');
     const sections = [...links].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
