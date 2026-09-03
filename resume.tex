@@ -6,21 +6,23 @@
 \setlength{\parindent}{0pt}
 \setlist[itemize]{noitemsep, topsep=0pt}
 
+\newcommand{\sectionrule}{\vspace{1pt}\rule{\textwidth}{0.4pt}\vspace{3pt}}
+\newcommand{\sep}{\hspace{5pt}|\hspace{5pt}}
+
 \begin{document}
 
 \begin{center}
     {\LARGE \textbf{Adityaa Saha}} \\
     \vspace{2pt}
-    23cs01002@iitbbs.ac.in \;|\; 
-    \href{https://github.com/Adityaa-Saha17}{github} \;|\;
+    23cs01002@iitbbs.ac.in \sep
+    \href{https://github.com/Adityaa-Saha17}{github} \sep
     \href{https://www.linkedin.com/in/adityaa-saha-533b02299}{linkedin}
 \end{center}
 
 \vspace{6pt}
 
-\textbf{Technical Skills} \\
-\hrule
-\vspace{3pt}
+\textbf{Technical Skills}
+\sectionrule
 \textbf{Languages:} C, C++, JavaScript, TypeScript, Python \quad
 \textbf{Web:} React, Node.js, Express \\
 \textbf{Databases:} MySQL, MongoDB \quad
@@ -29,85 +31,79 @@
 
 \vspace{7pt}
 
-\textbf{Projects} \\
-\hrule
-\vspace{3pt}
+\textbf{Projects}
+\sectionrule
 
-\textbf{32-bit RISC-V CPU Simulator} \hfill C/C++ \\
+\textbf{32-bit RISC-V CPU Simulator} \hfill C/C++ \sep \href{https://github.com/Adityaa-Saha17/32-bit-RISC-V-CPU-Simulator.git}{GitHub} \\
 \begin{itemize}
-    \item Implemented a 32-bit pipelined RV32I processor simulator with a 5-stage pipeline (IF, ID, EX, MEM, WB).
-    \item Added hazard detection, data forwarding, and pipeline stall simulation.
+    \item Implemented a cycle-accurate RV32I processor simulator with a 5-stage pipeline (IF, ID, EX, MEM, WB) and a two-pass assembler resolving labels and forward references.
+    \item Added a hazard detection unit with EX/MEM and MEM/WB forwarding paths, load-use interlock stalls, and control-hazard flushing on taken branches.
+    \item Instrumented the pipeline with branch prediction, per-stage tracing, and CPI/stall/flush counters exported as JSON for offline analysis.
 \end{itemize}
-\href{https://github.com/Adityaa-Saha17/32-bit-RISC-V-CPU-Simulator.git}{GitHub Repository}
 
 \vspace{4pt}
 
-\textbf{LSM Tree Key-Value Store} \hfill C++ \\
+\textbf{LSM Tree Key-Value Store} \hfill C++ \sep \href{https://github.com/Adityaa-Saha17/Log-Structured-Merge-Tree}{GitHub} \\
 \begin{itemize}
-    \item Built a disk-based KV store using LSM Tree with MemTable, SSTables, and leveled compaction.
-    \item Integrated WAL for crash recovery and CRC32 checksums for data integrity.
+    \item Built a disk-based key-value store on a Log-Structured Merge Tree, flushing an in-memory MemTable to immutable block-based SSTables with a sparse index for binary-searched lookups.
+    \item Implemented leveled compaction to bound read amplification, merge overlapping key ranges, and reclaim space from tombstoned and overwritten keys.
+    \item Integrated a write-ahead log with replay-on-startup crash recovery and CRC32 checksums to detect corruption on every read path.
 \end{itemize}
-\href{https://github.com/Adityaa-Saha17/Log-Structured-Merge-Tree}{GitHub Repository}
 
 \vspace{4pt}
 
-\textbf{DNS Server Implementation} \hfill C++ \\
+\textbf{DNS Server Implementation} \hfill C++ \sep \href{https://github.com/Adityaa-Saha17/DNS-Implementation}{GitHub} \\
 \begin{itemize}
-    \item Built a multithreaded DNS server over UDP and TCP with a thread pool, authoritative zone files, and upstream query forwarding.
-    \item Added response caching, per-client rate limiting, domain blocklists, rotating logs, and an HTTP /metrics endpoint.
+    \item Built a multithreaded DNS server handling RFC 1035 wire-format parsing and serialization over both UDP and TCP, backed by a fixed-size thread pool.
+    \item Served authoritative responses from parsed zone files, forwarded unresolved queries upstream with timeout and retry handling, and cached results with TTL awareness.
+    \item Added per-client rate limiting and domain blocklists, with rotating logs and an HTTP \texttt{/metrics} endpoint reporting query volume, cache hit ratio, and error rates.
 \end{itemize}
-\href{https://github.com/Adityaa-Saha17/DNS-Implementation}{GitHub Repository}
 
 \vspace{4pt}
 
-\textbf{HTTP Load Balancer} \hfill C++ \\
+\textbf{HTTP Load Balancer} \hfill C++ \sep \href{https://github.com/Adityaa-Saha17/Load-Balancer}{GitHub} \\
 \begin{itemize}
-    \item Built an HTTP load balancer in C++17 with a custom socket layer, HTTP parser, and pluggable backend scheduling.
-    \item Implemented active health checks, connection management, runtime configuration, and live metrics.
+    \item Built an L4/L7 load balancer in C++17 on a custom non-blocking socket layer, with an HTTP/1.1 request parser and keep-alive connection reuse.
+    \item Designed a pluggable scheduling interface supporting round-robin, least-connections, and weighted backend selection strategies.
+    \item Implemented active health checks that eject and reinstate backends on configurable thresholds, alongside runtime reconfiguration and live throughput/latency metrics.
 \end{itemize}
-\href{https://github.com/Adityaa-Saha17/Load-Balancer}{GitHub Repository}
 
 \vspace{7pt}
 
-\textbf{Education} \\
-\hrule
-\vspace{3pt}
+\textbf{Education}
+\sectionrule
 \textbf{Indian Institute of Technology Bhubaneswar} \hfill 2023 -- 2027 \\
 B.Tech in Computer Science and Engineering
 
 \vspace{7pt}
 
-\textbf{Positions of Responsibility} \\
-\hrule
-\vspace{3pt}
+\textbf{Positions of Responsibility}
+\sectionrule
 \begin{itemize}
-    \item Core Member, Dramatics Society — The Fourth Wall
-    \item Event Management Team Member, Cultural Fest — Alma Fiesta
+    \item Core Member, Dramatics Society --- The Fourth Wall
+    \item Event Management Team Member, Cultural Fest --- Alma Fiesta
 \end{itemize}
 
 \vspace{7pt}
 
-\textbf{Extracurricular Activities} \\
-\hrule
-\vspace{3pt}
+\textbf{Extracurricular Activities}
+\sectionrule
 \begin{itemize}
     \item Member of the IIT Bhubaneswar football team; active in dramatics and stage performances
 \end{itemize}
 
 \vspace{7pt}
 
-\textbf{Achievements} \\
-\hrule
-\vspace{3pt}
+\textbf{Achievements}
+\sectionrule
 \begin{itemize}
     \item Secured 2nd Place in Inter-Branch General Championship (Game Development)
 \end{itemize}
 
 \vspace{7pt}
 
-\textbf{Interests} \\
-\hrule
-\vspace{3pt}
+\textbf{Interests}
+\sectionrule
 Data Structures and Algorithms, Systems Programming, Backend Development
 
 \end{document}
