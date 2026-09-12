@@ -1,109 +1,175 @@
+%==============================================================
+%  Adityaa Saha — Resume (single page)
+%  Compile with: pdflatex (needs fontawesome5)
+%  Optional: place iitbbs-logo.png in the project root
+%==============================================================
 \documentclass[a4paper,10pt]{article}
-\usepackage[margin=0.6in]{geometry}
+
+\usepackage{silence}
+\WarningFilter{latex}{Command \showhyphens has changed}
+
+\usepackage[left=0.45in,right=0.45in,top=0.35in,bottom=0.3in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{titlesec}
 \usepackage{enumitem}
-\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fontawesome5}
 
+% --- icon fallbacks (older fontawesome5 releases lack some aliases) ---
+\providecommand{\faFileAlt}{\faFile}
+\providecommand{\faCertificate}{\faFile}
+\providecommand{\faTrophy}{\faStar}
+\providecommand{\faCode}{\faTerminal}
+
+\definecolor{primary}{RGB}{122,26,26}
+\hypersetup{colorlinks=true, urlcolor=primary, linkcolor=primary}
+
+\pagestyle{empty}
 \setlength{\parindent}{0pt}
-\setlist[itemize]{noitemsep, topsep=0pt}
+\setlength{\columnsep}{1.0em}
+\setlength{\tabcolsep}{0pt}
+\raggedbottom
+\sloppy
 
-\newcommand{\sectionrule}{\vspace{1pt}\rule{\textwidth}{0.4pt}\vspace{3pt}}
-\newcommand{\sep}{\hspace{5pt}|\hspace{5pt}}
+%---------------- section style ----------------
+\titleformat{\section}
+  {\color{primary}\large\scshape}{}{0em}{}
+  [\vspace{-0.70em}{\color{primary}\rule{\linewidth}{0.9pt}}\vspace{-0.45em}]
+\titlespacing*{\section}{0pt}{3.5pt}{1.5pt}
 
+%---------------- bullet list ----------------
+\newenvironment{rlist}
+  {\begin{itemize}[leftmargin=0.95em,labelsep=0.35em,itemsep=0pt,
+                   parsep=0pt,topsep=1pt,partopsep=0pt,label=\textbullet]}
+  {\end{itemize}\vspace{2.5pt}}
+
+%---------------- uniform icon spacing ----------------
+% one separator used everywhere: title->icon AND icon->icon
+\newcommand{\iconsep}{\hspace{0.32em}}
+
+%---------------- entry heading ----------------
+% #1 title  #2 icon links  #3 right-aligned text
+\newcommand{\entry}[3]{%
+  \textbf{\color{primary}#1}\iconsep#2\hfill #3\par\vspace{-1pt}%
+}
+
+\newcommand{\gitlink}[1]{\href{#1}{\faGithub}}
+\newcommand{\doclink}[1]{\href{#1}{\faCertificate}}
+
+%==============================================================
 \begin{document}
+\small
 
-\begin{center}
-    {\LARGE \textbf{Adityaa Saha}} \\
-    \vspace{2pt}
-    23cs01002@iitbbs.ac.in \sep
-    \href{https://github.com/Adityaa-Saha17}{github} \sep
-    \href{https://www.linkedin.com/in/adityaa-saha-533b02299}{linkedin}
-\end{center}
+%---------------- header ----------------
+\begin{minipage}[c]{0.12\textwidth}
+  \IfFileExists{iitbbs-logo.png}{\includegraphics[height=1.15cm]{iitbbs-logo.png}}{}
+\end{minipage}%
+\begin{minipage}[c]{0.59\textwidth}
+  \centering
+  {\LARGE\color{primary} Adityaa Saha}\\[2pt]
+  Final Year Undergraduate\\
+  Department of Computer Science and Engineering\\
+  Indian Institute of Technology Bhubaneswar
+\end{minipage}%
+\begin{minipage}[c]{0.29\textwidth}
+  \raggedleft\footnotesize
+  \href{mailto:23cs01002@iitbbs.ac.in}{23cs01002@iitbbs.ac.in}\iconsep\faEnvelope\\
+  \href{https://www.linkedin.com/in/adityaa-saha-533b02299/}{Adityaa Saha}\iconsep\faLinkedin\\
+  \href{https://github.com/Adityaa-Saha17}{Adityaa-Saha17}\iconsep\faGithub\\
+  \href{https://codeforces.com/profile/ats17}{ats17}\iconsep\faTrophy\quad
+  \href{https://leetcode.com/u/whocares17/}{whocares17}\iconsep\faCode
+\end{minipage}
 
-\vspace{6pt}
+\vspace{1pt}
+{\color{primary}\rule{\linewidth}{1.1pt}}
 
-\textbf{Technical Skills}
-\sectionrule
-\textbf{Languages:} C, C++, JavaScript, TypeScript, Python \quad
-\textbf{Web:} React, Node.js, Express \\
-\textbf{Databases:} MySQL, MongoDB \quad
-\textbf{Tools:} Git, GitHub \quad
-\textbf{Concepts:} DSA, OOP, COA, DBMS, CN, OS
+%---------------- work experience ----------------
+\section{Work Experience}
 
-\vspace{7pt}
+\entry{IIT Bhubaneswar, School of Electrical Sciences}
+      {\doclink{https://drive.google.com/file/d/1WfAxMYu9Ciw2C3xp4QJN93tk1-4IyfOY/view?usp=sharing}\iconsep\gitlink{https://github.com/Adityaa-Saha17/Sparse-Matrix-Multiplication}}
+      {\textit{May'26 -- Jul'26}}
+\textit{Research Intern $|$ Prof. Devashree Tripathy}\par\vspace{-1pt}
+\begin{rlist}
+  \item Worked on architecture-aware \textbf{Sparse Matrix Multiplication (SpMM)}, optimizing global, shared, and distributed memory access patterns on \textbf{NVIDIA T4 GPUs} using \textbf{CUDA}
+  \item Replaced \textbf{2:4 structured sparsity} with a \textbf{block-sparse (BCSR) Tensor Core} path after identifying that T4's Turing architecture lacks the Ampere-only \texttt{mma.sp.sync} instruction
+  \item Descoped DSM-style multi-GPU execution to framework-level partitioning via \textbf{PyTorch/NCCL} under Colab single-T4 and Kaggle dual-T4 (no \texttt{nvcc}) constraints
+  \item Built CUDA \textbf{benchmarking} scripts evaluating memory optimization strategies across shared and global memory hierarchies
+\end{rlist}
 
-\textbf{Projects}
-\sectionrule
+%---------------- projects ----------------
+\section{Projects}
+\begin{multicols}{2}
 
-\textbf{32-bit RISC-V CPU Simulator} \hfill C/C++ \sep \href{https://github.com/Adityaa-Saha17/32-bit-RISC-V-CPU-Simulator.git}{GitHub} \\
-\begin{itemize}
-    \item Implemented a cycle-accurate RV32I processor simulator with a 5-stage pipeline (IF, ID, EX, MEM, WB) and a two-pass assembler resolving labels and forward references.
-    \item Added a hazard detection unit with EX/MEM and MEM/WB forwarding paths, load-use interlock stalls, and control-hazard flushing on taken branches.
-    \item Instrumented the pipeline with branch prediction, per-stage tracing, and CPI/stall/flush counters exported as JSON for offline analysis.
-\end{itemize}
+\entry{TCP/IP Stack}{\gitlink{https://github.com/Adityaa-Saha17/TCP-IP}}{\textit{Personal Project}}
+\begin{rlist}
+  \item Built a \textbf{userspace TCP/IP stack} in \textbf{C++23} from a raw \textbf{TAP device}: Ethernet, ARP, IPv4/ICMP, UDP, and a full \textbf{RFC 9293 TCP state machine} on a single-threaded \textbf{epoll} loop
+  \item Implemented three-way handshake, four-way close, retransmission with \textbf{Karn/Jacobson RTT estimation}, and \textbf{Reno congestion control} (slow start, congestion avoidance, fast retransmit/recovery)
+  \item Designed around \texttt{std::expected} error handling, bounds-checked cursors over \texttt{std::span}, and \textbf{zero-copy} fixed buffers on the hot path
+  \item Validated with a toy \textbf{HTTP/1.0 server} over the custom stack, tested via \texttt{tcpdump}, \texttt{arping}, and \texttt{curl}
+\end{rlist}
 
-\vspace{4pt}
+\entry{HTTP Load Balancer}{\gitlink{https://github.com/Adityaa-Saha17/Load-Balancer}}{\textit{Personal Project}}
+\begin{rlist}
+  \item Built an \textbf{L4/L7 load balancer} from scratch in C++ on Linux with \textbf{edge-triggered non-blocking} epoll I/O handling \textbf{C10K}-scale concurrency
+  \item Implemented \textbf{weighted round robin}, \textbf{least connections}, and \textbf{power-of-two-choices}, plus \textbf{consistent hashing} with virtual nodes for cache-aware routing
+  \item Designed active/passive \textbf{health checking} with hysteresis and slow-start recovery, and a \textbf{circuit breaker} (closed/open/half-open) to isolate failing backends
+  \item Built an \textbf{HTTP/1.1 parser} with state-machine request handling, keep-alive pooling, and \textbf{request smuggling} (CL.TE) defenses
+  \item Added hot-reloadable \textbf{TOML} config via atomic pointer swap, structured \textbf{JSON logging}, and \textbf{Prometheus}-style RED metrics
+\end{rlist}
 
-\textbf{LSM Tree Key-Value Store} \hfill C++ \sep \href{https://github.com/Adityaa-Saha17/Log-Structured-Merge-Tree}{GitHub} \\
-\begin{itemize}
-    \item Built a disk-based key-value store on a Log-Structured Merge Tree, flushing an in-memory MemTable to immutable block-based SSTables with a sparse index for binary-searched lookups.
-    \item Implemented leveled compaction to bound read amplification, merge overlapping key ranges, and reclaim space from tombstoned and overwritten keys.
-    \item Integrated a write-ahead log with replay-on-startup crash recovery and CRC32 checksums to detect corruption on every read path.
-\end{itemize}
+\columnbreak
 
-\vspace{4pt}
+\entry{Key--Value Storage Engine (LSM Tree)}{\gitlink{https://github.com/Adityaa-Saha17/KV-Storing-engine-with-LSM-Tree}}{\textit{Personal Project}}
+\begin{rlist}
+  \item Built a \textbf{log-structured merge-tree} store in C++ with a \textbf{skip-list memtable}, \textbf{write-ahead log} for crash recovery, and immutable \textbf{SSTables} with block indexes and \textbf{Bloom filters}
+  \item Designed compaction behind a \textbf{pluggable strategy interface} with \textbf{leveled} and \textbf{size-tiered} policies to compare write vs.\ read amplification
+  \item Decoupled background flush/compaction from the write path using \textbf{atomic manifest swaps} so readers see consistent snapshots without blocking
+\end{rlist}
 
-\textbf{DNS Server Implementation} \hfill C++ \sep \href{https://github.com/Adityaa-Saha17/DNS-Implementation}{GitHub} \\
-\begin{itemize}
-    \item Built a multithreaded DNS server handling RFC 1035 wire-format parsing and serialization over both UDP and TCP, backed by a fixed-size thread pool.
-    \item Served authoritative responses from parsed zone files, forwarded unresolved queries upstream with timeout and retry handling, and cached results with TTL awareness.
-    \item Added per-client rate limiting and domain blocklists, with rotating logs and an HTTP \texttt{/metrics} endpoint reporting query volume, cache hit ratio, and error rates.
-\end{itemize}
+\entry{Recursive DNS Resolver}{\gitlink{https://github.com/Adityaa-Saha17/DNS-Implementation}}{\textit{Personal Project}}
+\begin{rlist}
+  \item Built a \textbf{multithreaded DNS server} in C++ with a hand-rolled \textbf{wire codec} (name compression, \textbf{EDNS0/OPT}, TC-bit truncation) over UDP and TCP on a fixed-size \textbf{thread pool}
+  \item Implemented an \textbf{authoritative zone engine} (A, AAAA, CNAME, MX, NS, TXT, SOA) with wildcards, CNAME chasing, SOA-driven negative answers, and a conditional forwarder
+  \item Designed a \textbf{shared-mutex LRU cache} with TTL decay and negative caching, plus a per-IP \textbf{token-bucket rate limiter} to bound amplification abuse
+  \item Added blocklisting, a \textbf{Prometheus} \texttt{/metrics} endpoint with latency histogram, rotating logs, and a \texttt{dig}/\texttt{nc} suite for malformed-packet resilience
+\end{rlist}
 
-\vspace{4pt}
+\entry{32-bit RISC-V CPU Simulator}{\gitlink{https://github.com/Adityaa-Saha17/32-bit-RISC-V-CPU-Simulator}}{\textit{Personal Project}}
+\begin{rlist}
+  \item Built a \textbf{cycle-accurate RV32I} simulator in C++ with a \textbf{5-stage pipeline} (IF, ID, EX, MEM, WB) and a \textbf{single-pass assembler} encoding R/I/S/B/J formats to machine code
+  \item Implemented a \textbf{control unit} driving per-opcode signals, an \textbf{ALU control decoder}, and EX/MEM and MEM/WB \textbf{forwarding} with load-use interlock stalls
+  \item Resolved \textbf{control hazards} by freezing fetch until branch resolution in EX, flushing younger stages on taken branches, with per-cycle stage tracing of the register file
+\end{rlist}
 
-\textbf{HTTP Load Balancer} \hfill C++ \sep \href{https://github.com/Adityaa-Saha17/Load-Balancer}{GitHub} \\
-\begin{itemize}
-    \item Built an load balancer in C++17 on a custom non-blocking socket layer, with an HTTP/1.1 request parser and keep-alive connection reuse.
-    \item Designed a pluggable scheduling interface supporting round-robin, least-connections, and weighted backend selection strategies.
-    \item Implemented active health checks that eject and reinstate backends on configurable thresholds, alongside runtime reconfiguration and live throughput/latency metrics.
-\end{itemize}
+\end{multicols}
 
-\vspace{7pt}
+%---------------- technical skills ----------------
+\section{Technical Skills}
+\textbf{Languages:} C, C++ (11/17/23), Go, CUDA, Bash\\
+\textbf{Systems \& Networking:} Linux systems programming, epoll \& event-driven I/O, sockets, TCP/IP, DNS, HTTP/1.1, multithreading, atomics \& lock-free concurrency, storage engines, GPU memory hierarchies\\
+\textbf{Tools \& Libraries:} Git, CMake, Prometheus, tcpdump, dig
 
-\textbf{Education}
-\sectionrule
-\textbf{Indian Institute of Technology Bhubaneswar} \hfill 2023 -- 2027 \\
-B.Tech in Computer Science and Engineering
-
-\vspace{7pt}
-
-\textbf{Positions of Responsibility}
-\sectionrule
-\begin{itemize}
-    \item Core Member, Dramatics Society --- The Fourth Wall
-    \item Event Management Team Member, Cultural Fest --- Alma Fiesta
-\end{itemize}
-
-\vspace{7pt}
-
-\textbf{Extracurricular Activities}
-\sectionrule
-\begin{itemize}
-    \item Member of the IIT Bhubaneswar football team; active in dramatics and stage performances
-\end{itemize}
-
-\vspace{7pt}
-
-\textbf{Achievements}
-\sectionrule
-\begin{itemize}
-    \item Secured 2nd Place in Inter-Branch General Championship (Game Development)
-\end{itemize}
-
-\vspace{7pt}
-
-\textbf{Interests}
-\sectionrule
-Data Structures and Algorithms, Systems Programming, Backend Development
+%---------------- relevant courses ----------------
+\section{Relevant Courses\quad\normalfont\footnotesize\itshape(* Ongoing)}
+{\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\linewidth}{@{}
+  >{\raggedright\arraybackslash}X
+  >{\raggedright\arraybackslash}X
+  >{\raggedright\arraybackslash}X@{}}
+Data Structures & Operating Systems & Advanced Algorithms*\\
+Discrete Structures & Database Systems & Artificial Intelligence*\\
+Design \& Analysis of Algorithms & Computer Networks & Networks \& System Security*\\
+Computer Organization \& Architecture & Formal Language \& Automata Theory & Math.\ Foundations of CS*\\
+\end{tabularx}}
 
 \end{document}
