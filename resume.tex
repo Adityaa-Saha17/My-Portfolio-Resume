@@ -1,175 +1,106 @@
-%==============================================================
-%  Adityaa Saha — Resume (single page)
-%  Compile with: pdflatex (needs fontawesome5)
-%  Optional: place iitbbs-logo.png in the project root
-%==============================================================
-\documentclass[a4paper,10pt]{article}
-
-\usepackage{silence}
-\WarningFilter{latex}{Command \showhyphens has changed}
-
-\usepackage[left=0.45in,right=0.45in,top=0.35in,bottom=0.3in]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
+\documentclass[10pt,a4paper]{article}
+\usepackage[a4paper,top=0.45in,bottom=0.4in,left=0.5in,right=0.5in]{geometry}
+\usepackage[expansion=false]{microtype}
 \usepackage{xcolor}
 \usepackage{titlesec}
 \usepackage{enumitem}
-\usepackage{multicol}
 \usepackage{tabularx}
-\usepackage{array}
-\usepackage{graphicx}
-\usepackage{microtype}
 \usepackage[hidelinks]{hyperref}
-\usepackage{fontawesome5}
 
-% --- icon fallbacks (older fontawesome5 releases lack some aliases) ---
-\providecommand{\faFileAlt}{\faFile}
-\providecommand{\faCertificate}{\faFile}
-\providecommand{\faTrophy}{\faStar}
-\providecommand{\faCode}{\faTerminal}
-
-\definecolor{primary}{RGB}{122,26,26}
-\hypersetup{colorlinks=true, urlcolor=primary, linkcolor=primary}
-
+\definecolor{accent}{RGB}{140,20,30}
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
-\setlength{\columnsep}{1.0em}
-\setlength{\tabcolsep}{0pt}
-\raggedbottom
-\sloppy
+\linespread{1.0}
 
-%---------------- section style ----------------
-\titleformat{\section}
-  {\color{primary}\large\scshape}{}{0em}{}
-  [\vspace{-0.70em}{\color{primary}\rule{\linewidth}{0.9pt}}\vspace{-0.45em}]
-\titlespacing*{\section}{0pt}{3.5pt}{1.5pt}
+\titleformat{\section}{\color{accent}\large\scshape\raggedright}{}{0em}{}[\vspace{-6pt}\color{accent}\rule{\linewidth}{0.6pt}]
+\titlespacing*{\section}{0pt}{8pt}{4pt}
 
-%---------------- bullet list ----------------
-\newenvironment{rlist}
-  {\begin{itemize}[leftmargin=0.95em,labelsep=0.35em,itemsep=0pt,
-                   parsep=0pt,topsep=1pt,partopsep=0pt,label=\textbullet]}
-  {\end{itemize}\vspace{2.5pt}}
+\setlist[itemize]{leftmargin=1.1em,itemsep=0.5pt,parsep=0pt,topsep=1pt,label=$\bullet$,before=\small}
 
-%---------------- uniform icon spacing ----------------
-% one separator used everywhere: title->icon AND icon->icon
-\newcommand{\iconsep}{\hspace{0.32em}}
+\newcommand{\lnk}[2]{\href{#1}{\color{accent}#2}}
+\newcommand{\entry}[4]{\textbf{#1}\hfill\textit{#2}\\[-1pt]{\small\textit{#3}}\hfill{\small #4}\vspace{-1pt}}
+\newcommand{\project}[3]{\vspace{5pt}\textbf{#1}\ \ {\small\textit{#2}}\hfill{\small #3}\vspace{-1pt}}
 
-%---------------- entry heading ----------------
-% #1 title  #2 icon links  #3 right-aligned text
-\newcommand{\entry}[3]{%
-  \textbf{\color{primary}#1}\iconsep#2\hfill #3\par\vspace{-1pt}%
-}
-
-\newcommand{\gitlink}[1]{\href{#1}{\faGithub}}
-\newcommand{\doclink}[1]{\href{#1}{\faCertificate}}
-
-%==============================================================
 \begin{document}
-\small
 
-%---------------- header ----------------
-\begin{minipage}[c]{0.12\textwidth}
-  \IfFileExists{iitbbs-logo.png}{\includegraphics[height=1.15cm]{iitbbs-logo.png}}{}
-\end{minipage}%
-\begin{minipage}[c]{0.59\textwidth}
-  \centering
-  {\LARGE\color{primary} Adityaa Saha}\\[2pt]
-  Final Year Undergraduate\\
-  Department of Computer Science and Engineering\\
+% ---------- Header ----------
+\begin{minipage}[t]{0.6\textwidth}
+  {\LARGE\color{accent}Adityaa Saha}\\[2pt]
+  B.Tech, Computer Science and Engineering\\
   Indian Institute of Technology Bhubaneswar
-\end{minipage}%
-\begin{minipage}[c]{0.29\textwidth}
-  \raggedleft\footnotesize
-  \href{mailto:23cs01002@iitbbs.ac.in}{23cs01002@iitbbs.ac.in}\iconsep\faEnvelope\\
-  \href{https://www.linkedin.com/in/adityaa-saha-533b02299/}{Adityaa Saha}\iconsep\faLinkedin\\
-  \href{https://github.com/Adityaa-Saha17}{Adityaa-Saha17}\iconsep\faGithub\\
-  \href{https://codeforces.com/profile/ats17}{ats17}\iconsep\faTrophy\quad
-  \href{https://leetcode.com/u/whocares17/}{whocares17}\iconsep\faCode
+\end{minipage}\hfill
+\begin{minipage}[t]{0.38\textwidth}\raggedleft\small
+  \lnk{mailto:23cs01002@iitbbs.ac.in}{23cs01002@iitbbs.ac.in}\\
+  \lnk{https://www.linkedin.com/in/adityaa-saha-533b02299/}{LinkedIn}\ $|$\
+  \lnk{https://github.com/Adityaa-Saha17}{GitHub: Adityaa-Saha17}\\
+  \lnk{https://codeforces.com/profile/ats17}{Codeforces: ats17}\ $|$\
+  \lnk{https://leetcode.com/u/whocares17/}{LeetCode: whocares17}
 \end{minipage}
 
-\vspace{1pt}
-{\color{primary}\rule{\linewidth}{1.1pt}}
+% ---------- Education ----------
+\section{Education}
+{\small
+\begin{tabularx}{\linewidth}{@{}l X l r@{}}
+\textbf{B.Tech, Computer Science and Engineering} & Indian Institute of Technology Bhubaneswar & 2023 -- 2027 & CGPA: 6.47 \\
+Class XII & Shiv Jyoti Convent School & 2023 & 82\% \\
+Class X & North Point Senior Secondary Public School & 2021 & 90\% \\
+\end{tabularx}}
 
-%---------------- work experience ----------------
-\section{Work Experience}
+% ---------- Experience ----------
+\section{Experience}
+\entry{IIT Bhubaneswar, School of Electrical Sciences}{May 2026 -- Jul 2026}{Research Intern $|$\ Advisor: Dr.\ Devashree Tripathy}{\lnk{https://drive.google.com/file/d/1WfAxMYu9Ciw2C3xp4QJN93tk1-4IyfOY/view?usp=sharing}{Certificate}\ $|$\ \lnk{https://github.com/Adityaa-Saha17/Sparse-Matrix-Multiplication}{Code}}
+\begin{itemize}
+  \item Optimized architecture-aware \textbf{Sparse Matrix Multiplication (SpMM)} kernels in \textbf{CUDA} on \textbf{NVIDIA T4} GPUs, restructuring global, shared and distributed memory access patterns
+  \item Re-architected the Tensor Core path from \textbf{2:4 structured sparsity} to \textbf{block-sparse (BCSR)} after identifying that Turing (sm\_75) lacks the Ampere-only \texttt{mma.sp.sync} instruction
+  \item Scaled execution to multiple GPUs through framework-level partitioning with \textbf{PyTorch/NCCL} on dual-T4 nodes, adapting the DSM-style design to a toolchain without \texttt{nvcc}
+  \item Built a \textbf{CUDA benchmarking harness} comparing memory optimization strategies across shared and global memory
+\end{itemize}
 
-\entry{IIT Bhubaneswar, School of Electrical Sciences}
-      {\doclink{https://drive.google.com/file/d/1WfAxMYu9Ciw2C3xp4QJN93tk1-4IyfOY/view?usp=sharing}\iconsep\gitlink{https://github.com/Adityaa-Saha17/Sparse-Matrix-Multiplication}}
-      {\textit{May'26 -- Jul'26}}
-\textit{Research Intern $|$ Prof. Devashree Tripathy}\par\vspace{-1pt}
-\begin{rlist}
-  \item Worked on architecture-aware \textbf{Sparse Matrix Multiplication (SpMM)}, optimizing global, shared, and distributed memory access patterns on \textbf{NVIDIA T4 GPUs} using \textbf{CUDA}
-  \item Replaced \textbf{2:4 structured sparsity} with a \textbf{block-sparse (BCSR) Tensor Core} path after identifying that T4's Turing architecture lacks the Ampere-only \texttt{mma.sp.sync} instruction
-  \item Descoped DSM-style multi-GPU execution to framework-level partitioning via \textbf{PyTorch/NCCL} under Colab single-T4 and Kaggle dual-T4 (no \texttt{nvcc}) constraints
-  \item Built CUDA \textbf{benchmarking} scripts evaluating memory optimization strategies across shared and global memory hierarchies
-\end{rlist}
-
-%---------------- projects ----------------
+% ---------- Projects ----------
 \section{Projects}
-\begin{multicols}{2}
+\project{Userspace TCP/IP Stack}{C++23, Linux}{\lnk{https://github.com/Adityaa-Saha17/TCP-IP}{GitHub}}
+\begin{itemize}
+  \item Implemented Ethernet, ARP, IPv4/ICMP, UDP and an \textbf{RFC 9293 TCP state machine} over a raw \textbf{TAP device} via \textbf{epoll}
+  \item Handled three-way handshake, four-way close, retransmission with \textbf{Karn/Jacobson RTT estimation} and \textbf{Reno congestion control} (slow start, congestion avoidance, fast retransmit/recovery)
+  \item Used \texttt{std::expected} error handling, bounds-checked cursors over \texttt{std::span} and \textbf{zero-copy} fixed buffers on the hot path; validated with an HTTP/1.0 server tested via \texttt{tcpdump}, \texttt{arping} and \texttt{curl}
+\end{itemize}
 
-\entry{TCP/IP Stack}{\gitlink{https://github.com/Adityaa-Saha17/TCP-IP}}{\textit{Personal Project}}
-\begin{rlist}
-  \item Built a \textbf{userspace TCP/IP stack} in \textbf{C++23} from a raw \textbf{TAP device}: Ethernet, ARP, IPv4/ICMP, UDP, and a full \textbf{RFC 9293 TCP state machine} on a single-threaded \textbf{epoll} loop
-  \item Implemented three-way handshake, four-way close, retransmission with \textbf{Karn/Jacobson RTT estimation}, and \textbf{Reno congestion control} (slow start, congestion avoidance, fast retransmit/recovery)
-  \item Designed around \texttt{std::expected} error handling, bounds-checked cursors over \texttt{std::span}, and \textbf{zero-copy} fixed buffers on the hot path
-  \item Validated with a toy \textbf{HTTP/1.0 server} over the custom stack, tested via \texttt{tcpdump}, \texttt{arping}, and \texttt{curl}
-\end{rlist}
+\project{L4/L7 HTTP Load Balancer}{C++, Linux}{\lnk{https://github.com/Adityaa-Saha17/Load-Balancer}{GitHub}}
+\begin{itemize}
+  \item Built a load balancer on \textbf{edge-triggered, non-blocking epoll} I/O designed for C10K-scale concurrency, with weighted round robin, least connections, \textbf{power-of-two-choices} and \textbf{consistent hashing} with virtual nodes
+  \item Added active/passive \textbf{health checks} with hysteresis and slow-start recovery, plus a \textbf{circuit breaker} (closed/open/half-open) to isolate failing backends
+  \item Wrote a state-machine \textbf{HTTP/1.1 parser} with keep-alive pooling and \textbf{request-smuggling (CL.TE) defenses}; hot-reloads TOML config via atomic pointer swap and exports Prometheus RED metrics
+\end{itemize}
 
-\entry{HTTP Load Balancer}{\gitlink{https://github.com/Adityaa-Saha17/Load-Balancer}}{\textit{Personal Project}}
-\begin{rlist}
-  \item Built an \textbf{L4/L7 load balancer} from scratch in C++ on Linux with \textbf{edge-triggered non-blocking} epoll I/O handling \textbf{C10K}-scale concurrency
-  \item Implemented \textbf{weighted round robin}, \textbf{least connections}, and \textbf{power-of-two-choices}, plus \textbf{consistent hashing} with virtual nodes for cache-aware routing
-  \item Designed active/passive \textbf{health checking} with hysteresis and slow-start recovery, and a \textbf{circuit breaker} (closed/open/half-open) to isolate failing backends
-  \item Built an \textbf{HTTP/1.1 parser} with state-machine request handling, keep-alive pooling, and \textbf{request smuggling} (CL.TE) defenses
-  \item Added hot-reloadable \textbf{TOML} config via atomic pointer swap, structured \textbf{JSON logging}, and \textbf{Prometheus}-style RED metrics
-\end{rlist}
+\project{Key--Value Storage Engine (LSM Tree)}{C++}{\lnk{https://github.com/Adityaa-Saha17/KV-Storing-engine-with-LSM-Tree}{GitHub}}
+\begin{itemize}
+  \item Built an LSM-tree store with a \textbf{skip-list memtable}, crash-safe \textbf{WAL} and \textbf{SSTables} with block indexes and \textbf{Bloom filters}
+  \item Designed compaction behind a pluggable strategy interface (\textbf{leveled} and \textbf{size-tiered}) to compare write vs.\ read amplification; background flush/compaction uses \textbf{atomic manifest swaps} so readers get consistent, non-blocking snapshots
+\end{itemize}
 
-\columnbreak
+\project{Recursive DNS Resolver}{C++}{\lnk{https://github.com/Adityaa-Saha17/DNS-Implementation}{GitHub}}
+\begin{itemize}
+  \item Built a UDP/TCP DNS server on a \textbf{thread pool} with a hand-rolled \textbf{wire codec} (name compression, EDNS0, TC-bit)
+  \item Implemented an \textbf{authoritative zone engine} (A, AAAA, CNAME, MX, NS, TXT, SOA) with wildcards, CNAME chasing, negative answers and a conditional forwarder
+  \item Added blocklisting, a Prometheus \texttt{/metrics} endpoint with a latency histogram, rotating logs and a \texttt{dig}/\texttt{nc} suite for malformed-packet resilience
+  \item Added a \textbf{shared-mutex LRU cache} with TTL decay and negative caching, plus per-IP \textbf{token-bucket rate limiting} to bound amplification abuse
+\end{itemize}
 
-\entry{Key--Value Storage Engine (LSM Tree)}{\gitlink{https://github.com/Adityaa-Saha17/KV-Storing-engine-with-LSM-Tree}}{\textit{Personal Project}}
-\begin{rlist}
-  \item Built a \textbf{log-structured merge-tree} store in C++ with a \textbf{skip-list memtable}, \textbf{write-ahead log} for crash recovery, and immutable \textbf{SSTables} with block indexes and \textbf{Bloom filters}
-  \item Designed compaction behind a \textbf{pluggable strategy interface} with \textbf{leveled} and \textbf{size-tiered} policies to compare write vs.\ read amplification
-  \item Decoupled background flush/compaction from the write path using \textbf{atomic manifest swaps} so readers see consistent snapshots without blocking
-\end{rlist}
+\project{32-bit RISC-V CPU Simulator}{C++}{\lnk{https://github.com/Adityaa-Saha17/32-bit-RISC-V-CPU-Simulator}{GitHub}}
+\begin{itemize}
+  \item Built a cycle-accurate \textbf{RV32I} simulator with a \textbf{5-stage pipeline} and a single-pass R/I/S/B/J assembler
+  \item Designed a \textbf{control unit} driving per-opcode signals and an \textbf{ALU control decoder} for the datapath
+  \item Implemented \textbf{EX/MEM and MEM/WB forwarding}, load-use interlock stalls and branch flushing on taken branches, with per-cycle stage and register-file tracing
+\end{itemize}
 
-\entry{Recursive DNS Resolver}{\gitlink{https://github.com/Adityaa-Saha17/DNS-Implementation}}{\textit{Personal Project}}
-\begin{rlist}
-  \item Built a \textbf{multithreaded DNS server} in C++ with a hand-rolled \textbf{wire codec} (name compression, \textbf{EDNS0/OPT}, TC-bit truncation) over UDP and TCP on a fixed-size \textbf{thread pool}
-  \item Implemented an \textbf{authoritative zone engine} (A, AAAA, CNAME, MX, NS, TXT, SOA) with wildcards, CNAME chasing, SOA-driven negative answers, and a conditional forwarder
-  \item Designed a \textbf{shared-mutex LRU cache} with TTL decay and negative caching, plus a per-IP \textbf{token-bucket rate limiter} to bound amplification abuse
-  \item Added blocklisting, a \textbf{Prometheus} \texttt{/metrics} endpoint with latency histogram, rotating logs, and a \texttt{dig}/\texttt{nc} suite for malformed-packet resilience
-\end{rlist}
-
-\entry{32-bit RISC-V CPU Simulator}{\gitlink{https://github.com/Adityaa-Saha17/32-bit-RISC-V-CPU-Simulator}}{\textit{Personal Project}}
-\begin{rlist}
-  \item Built a \textbf{cycle-accurate RV32I} simulator in C++ with a \textbf{5-stage pipeline} (IF, ID, EX, MEM, WB) and a \textbf{single-pass assembler} encoding R/I/S/B/J formats to machine code
-  \item Implemented a \textbf{control unit} driving per-opcode signals, an \textbf{ALU control decoder}, and EX/MEM and MEM/WB \textbf{forwarding} with load-use interlock stalls
-  \item Resolved \textbf{control hazards} by freezing fetch until branch resolution in EX, flushing younger stages on taken branches, with per-cycle stage tracing of the register file
-\end{rlist}
-
-\end{multicols}
-
-%---------------- technical skills ----------------
-\section{Technical Skills}
-\textbf{Languages:} C, C++ (11/17/23), Go, CUDA, Bash\\
-\textbf{Systems \& Networking:} Linux systems programming, epoll \& event-driven I/O, sockets, TCP/IP, DNS, HTTP/1.1, multithreading, atomics \& lock-free concurrency, storage engines, GPU memory hierarchies\\
-\textbf{Tools \& Libraries:} Git, CMake, Prometheus, tcpdump, dig
-
-%---------------- relevant courses ----------------
-\section{Relevant Courses\quad\normalfont\footnotesize\itshape(* Ongoing)}
-{\footnotesize
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.08}
-\begin{tabularx}{\linewidth}{@{}
-  >{\raggedright\arraybackslash}X
-  >{\raggedright\arraybackslash}X
-  >{\raggedright\arraybackslash}X@{}}
-Data Structures & Operating Systems & Advanced Algorithms*\\
-Discrete Structures & Database Systems & Artificial Intelligence*\\
-Design \& Analysis of Algorithms & Computer Networks & Networks \& System Security*\\
-Computer Organization \& Architecture & Formal Language \& Automata Theory & Math.\ Foundations of CS*\\
+% ---------- Skills ----------
+\section{Technical Skills \& Coursework}
+{\small
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Languages} & C, C++ (11/17/23), CUDA, Bash \\
+\textbf{Systems \& Networking} & Linux systems programming, epoll and event-driven I/O, sockets, TCP/IP, DNS, HTTP/1.1, multithreading, atomics and lock-free concurrency, storage engines, GPU memory hierarchies \\
+\textbf{Tools \& Libraries} & PyTorch/NCCL, Git, CMake, Prometheus, tcpdump, dig \\
+\textbf{Coursework} & Data Structures, Design \& Analysis of Algorithms, Advanced Algorithms, Operating Systems, Computer Networks, Database Systems, Computer Organization \& Architecture, Networks \& System Security, Artificial Intelligence \\
 \end{tabularx}}
 
 \end{document}
