@@ -1,1 +1,10 @@
 AGENTS.md
+node_modules
+dist
+.DS_Store
+*.local
+# LaTeX build files
+*.aux
+*.log
+*.out
+*.synctex.gz

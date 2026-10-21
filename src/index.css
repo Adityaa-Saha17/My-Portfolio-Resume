@@ -1,0 +1,171 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/unbounded';
+@import '@fontsource-variable/instrument-sans/wdth.css';
+@import '@fontsource-variable/jetbrains-mono';
+
+@theme {
+  --color-void: #07051a;
+  --color-nebula: #110d2e;
+  --color-violet: #7c5cff;
+  --color-cyan: #22d3ee;
+  --color-star: #eceaff;
+  --color-haze: #a7a3d6;
+  --color-dim: #7d79ab;
+
+  --font-display: 'Unbounded Variable', 'Unbounded', system-ui, sans-serif;
+  --font-sans: 'Instrument Sans Variable', 'Instrument Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+
+:root {
+  color-scheme: dark;
+  --line: rgba(167, 163, 214, 0.16);
+  --glass: rgba(17, 13, 46, 0.55);
+}
+
+html {
+  background: var(--color-void);
+  -webkit-text-size-adjust: 100%;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--color-void);
+  color: var(--color-star);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-violet);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+/* Display type: wide, heavy, tight. Unbounded carries the personality. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 760;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-size: clamp(2.25rem, 5.4vw, 4.25rem);
+}
+
+.lede {
+  color: var(--color-haze);
+  max-width: 58ch;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+/* Inline code inside bullet text */
+.rich code {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  background: rgba(124, 92, 255, 0.14);
+  border: 1px solid rgba(124, 92, 255, 0.25);
+  color: #d9d2ff;
+  padding: 0.08em 0.38em;
+  border-radius: 6px;
+  overflow-wrap: anywhere;
+}
+.rich strong {
+  color: var(--color-star);
+  font-weight: 620;
+}
+
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--line);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  backdrop-filter: blur(14px) saturate(1.3);
+}
+
+.gradient-text {
+  background: linear-gradient(100deg, #ffffff 0%, #d9d2ff 40%, #8be7f6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn-primary {
+  background: linear-gradient(100deg, #7c5cff, #5b8cff 55%, #22d3ee);
+  color: #fff;
+  box-shadow: 0 10px 40px -12px rgba(124, 92, 255, 0.8);
+}
+.btn-primary:hover {
+  box-shadow: 0 12px 48px -10px rgba(34, 211, 238, 0.75);
+}
+.btn-ghost {
+  border: 1px solid rgba(167, 163, 214, 0.32);
+  color: var(--color-star);
+  background: rgba(17, 13, 46, 0.4);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.btn-ghost:hover {
+  border-color: var(--color-cyan);
+  background: rgba(34, 211, 238, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
